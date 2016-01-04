@@ -4,7 +4,7 @@
 #
 
 import psycopg2
-from random import randint
+import random
 
 
 def connect():
@@ -195,15 +195,16 @@ def playGames():
     we only care about ID indexes p1: 0, p2: 2
     if true, leave pair as is, swap if false
 
-    todo: give player on left slight bias
-    to spread out field more? or will bell curve prevail?
+    if odd numbers of players are given, the last player
+    gets automatic win.
     """
     pairs = swissPairings();
+    print pairs
 
     for players in pairs:
         print [players[0], players[2]]
 
-        if randint(0, 1) == 1:
+        if (random.randint(0, 1) == 1) or (players[2] == ''):
             winner = players[0]
             loser = players[2]
         else:
