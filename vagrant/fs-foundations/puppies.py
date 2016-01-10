@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String, Date, Numeric
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
- 
+
 Base = declarative_base()
 
 class Shelter(Base):
@@ -14,7 +14,7 @@ class Shelter(Base):
     state = Column(String(20))
     zipCode = Column(String(10))
     website = Column(String)
-    
+
 class Puppy(Base):
     __tablename__ = 'puppy'
     id = Column(Integer, primary_key=True)
@@ -26,8 +26,18 @@ class Puppy(Base):
     shelter = relationship(Shelter)
     weight = Column(Numeric(10))
 
+class Profile(Base):
+    __tablename__ = 'profile'
+    puppy_id = Column(Integer, ForeignKey('puppy.id'))
+    photo_url = Column(String(250))
+    description = Column(String(250))
+    special_needs = Column(String(250))
+
+
+
+
 
 engine = create_engine('sqlite:///puppyshelter.db')
- 
+
 
 Base.metadata.create_all(engine)
