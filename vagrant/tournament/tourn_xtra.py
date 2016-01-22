@@ -193,10 +193,10 @@ def addMultiple():
 def playGames():
     """ pick on random winner in a pair
     we only care about ID indexes p1: 0, p2: 2
-    if true, leave pair as is, swap if false
+    if rand number is 1, leave pair as is, swap if 0
 
-    if odd numbers of players are given, the last player
-    gets automatic win.
+    if odd numbers of players are given, 
+    the last player gets automatic win.
     """
     pairs = swissPairings();
     print pairs
